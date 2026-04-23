@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Art of Movie Scores</title>
+  <link rel="stylesheet" href="css/fromscratch.css" />
+  <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+</head>
+<body>
+
+  <!-- ========== SITE-WIDE NAVIGATION BAR ========== -->
+  <nav id="site-nav">
+    <ul id="site-nav-links">
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="hangman.html" class="nav-link">Game</a></li>
+      <li><a href="resume.html" class="nav-link">Resume</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========== HEADER / HERO ========== -->
+  <div id="hero-div">
+    <div id="hero-text">
+      <p class="hero-label">A CINEMATIC JOURNEY THROUGH</p>
+      <h1>The Art of<br /><span class="gold">Movie Scores</span></h1>
+      <p class="hero-sub">Where music becomes the soul of the story.</p>
+      <!-- ON-PAGE ANCHOR NAVIGATION -->
+      <nav id="anchor-nav">
+        <a href="#composers">Composers</a>
+        <a href="#favorites">My Favorites</a>
+        <a href="#video">Watch &amp; Listen</a>
+        <a href="#top-scores">Top Scores</a>
+        <a href="#data">Data</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ========== COMPOSERS SECTION ========== -->
+  <div id="composers-div">
+    <a class="section-anchor" id="composers"></a>
+    <h2>Legendary <span class="gold">Composers</span></h2>
+    <p class="section-intro">
+      The greatest film scores are born from the minds of 
+      visionaries who dedicate their lives to the marriage of image and sound.
+      Below are some of the masters — and the hallmarks that define their work.
+    </p>
+
+    <!-- ORDERED LIST with embedded UNORDERED LISTS -->
+    <ol id="composers-list">
+
+      <li>
+        <!-- ★ BLANK: Replace with your first favorite composer's name -->
+        <h3>John Williams</h3>
+        <ul>
+          <!-- ★ BLANK: Add 2–4 bullet points about this composer (style, famous works, fun facts, etc.) -->
+          <li>Harry Potter and the Philosopher's Stone, 2001</li>
+          <li>Jurrasic Park, 1993</li>
+          <li>Indiana Jones, 1981</li>
+        </ul>
+      </li>
+
+      <li>
+        <!-- ★ BLANK: Replace with your second favorite composer's name -->
+        <h3>Alexandre Desplat</h3>
+        <ul>
+          <li>Mr. Magorium's Wonder Emporium, 2007</li>
+          <li>Little Women, 2019</li>
+          <li>Fantasic Mr. Fox, 2009</li>
+        </ul>
+      </li>
+
+      <li>
+        <!-- ★ BLANK: Replace with your third favorite composer's name -->
+        <h3>Hans Zimmer</h3>
+        <ul>
+          <li>Interstellar, 2014</li>
+          <li>Gladiator, 2000</li>
+          <li>The Blue Planet, 2006</li>
+        </ul>
+      </li>
+
+    </ol>
+  </div>
+
+  <!-- ========== FAVORITES SECTION ========== -->
+  <div id="favorites-div">
+    <a class="section-anchor" id="favorites"></a>
+    <h2>My Favorite <span class="gold">Scores</span></h2>
+    <p class="section-intro">
+      These are the scores I return to again and again — the ones that make
+      scenes unforgettable and sometimes move me even without the film.
+    </p>
+
+    <div id="score-cards">
+
+      <!-- SCORE CARD 1 -->
+      <div class="score-card">
+        <!-- ★ BLANK: Replace src with a real image URL or local path, and update alt text -->
+        <img src="assets/img/dune.jpg" alt="Dune Movie Poster" class="score-img" />
+        <div class="score-info">
+          <!-- ★ BLANK: Fill in movie title, composer, year, and your description -->
+          <h3>Dune</h3>
+          <p class="composer-tag">Composed by Hans Zimmer &bull; 2021</p>
+          <p>This score transports you to a different world, literally. With rich, alien-like sounds mixed with classic orchestral themes, Zimmer creates an unforgettable score here.</p>
+        </div>
+      </div>
+
+      <!-- SCORE CARD 2 -->
+      <div class="score-card">
+        <img src="assets/img/schindler.jpg" alt="Schindler's List Movie Poster" class="score-img" />
+        <div class="score-info">
+          <h3>Schindler's List</h3>
+          <p class="composer-tag">Composed by John Williams &bull; 1993</p>
+          <p>This haunting score captures the emotional weight of the Holocaust, with its melancholic melodies and powerful orchestration. Williams has brought tears to my eyes many times through these pieces.</p>
+        </div>
+      </div>
+
+      <!-- SCORE CARD 3 -->
+      <div class="score-card">
+        <img src="assets/img/tronlegacy.jpeg" alt="Tron Legacy Movie Poster" class="score-img" />
+        <div class="score-info">
+          <h3>Tron: Legacy</h3>
+          <p class="composer-tag">Composed by Daft Punk &bull; 2010</p>
+          <p>This score brings a futuristic electronic sound to the world of Tron, with synthesizers and drum machines creating an immersive audio experience. Daft Punk was a bold choice, but they went down in history with this adrenaline-invoking score.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== YOUTUBE VIDEO SECTION ========== -->
+  <div id="video-div">
+    <a class="section-anchor" id="video"></a>
+    <h2>Watch &amp; <span class="gold">Listen</span></h2>
+    <p class="section-intro">
+      <!-- ★ BLANK: Update this description to match the video you choose -->
+      This is Hans Zimmer, composer of Dune, talking about his process and inspiration for creating the score. It's a fascinating look into how a master craftsman approaches his art.
+    </p>
+
+    <div id="video-wrapper">
+      <!--
+        ★ BLANK: Replace [YOUTUBE VIDEO ID] in the src below with the actual
+        YouTube video ID. The ID is the part after "?v=" in a YouTube URL.
+        Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ  →  ID is dQw4w9WgXcQ
+        The full src should look like:
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+      -->
+      <iframe
+        id="yt-embed"
+        src="https://www.youtube.com/embed/93A1ryc-WW0"
+        title="How 'Dune' Composer Hans Zimmer Created the Oscar-Winning Score | Vanity Fair"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <!-- ========== TOP SCORES RANKED LIST ========== -->
+  <div id="top-scores-div">
+    <a class="section-anchor" id="top-scores"></a>
+    <h2>My All-Time <span class="gold">Top Scores</span></h2>
+    <p class="section-intro">If I had to rank them, here's how it would go (although it feels impossible).</p>
+
+    <ol id="top-scores-list">
+      <!-- ★ BLANK: Fill in your ranked list of scores. Add or remove <li> items as needed. -->
+      <li> Big Country - Minari (2020)</li>
+      <li> Agape - If Beale Street Could Talk (2018)</li>
+      <li> Cornfield Chase - Interstellar (2014)</li>
+      <li> Night Window - 1917 (2019)</li>
+      <li> I Could Have Done More - Schindler's List (1993)</li>
+    </ol>
+  </div>
+
+  <!-- ========== TABLEAU SECTION ========== -->
+<div id="tableau-div">
+  <a class="section-anchor" id="data"></a>
+  <h2>By the <span class="gold">Numbers</span></h2>
+  <p class="section-intro">
+    An interactive look at Hans Zimmer's songs — explore the data behind the music.
+  </p>
+
+  <div id="tableau-wrapper">
+    <tableau-viz
+      id="tableau-viz"
+      src="https://public.tableau.com/views/HansZimmerSongs/HansZimmerSongs"
+      width="100%"
+      height="600"
+      toolbar="bottom"
+      hide-tabs>
+    </tableau-viz>
+  </div>
+</div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer id="footer-div">
+    <p>
+      <!-- ★ BLANK: Replace with your name -->
+      Created with passion by <strong><a href=resume.html>Kate Davis</a></strong> &bull;
+      <a href="#hero-div">Back to top &uarr;</a>
+    </p>
+  </footer>
+
+</body>
+</html>

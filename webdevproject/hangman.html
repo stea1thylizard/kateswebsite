@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hangman</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f2;
+      color: #1a1a18;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #1a1a18; color: #f0ede6; }
+      .card { background: #242422; border-color: rgba(255,255,255,0.12); }
+      .letter-blank { border-bottom-color: #f0ede6; color: #f0ede6; }
+      input[type="text"] {
+        background: #2e2e2b;
+        border-color: rgba(255,255,255,0.2);
+        color: #f0ede6;
+      }
+      button { background: #2e2e2b; border-color: rgba(255,255,255,0.2); color: #f0ede6; }
+      button:hover { background: #3a3a36; }
+      button:disabled { opacity: 0.4; cursor: not-allowed; }
+      .guessed-letters { color: #f0856e; }
+      .status-win { color: #4caf80; }
+      .status-lose { color: #f0856e; }
+      .status-correct { color: #4caf80; }
+      .status-wrong { color: #f0856e; }
+      .status-neutral { color: #aaa; }
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 16px;
+      padding: 2rem 2rem 2.5rem;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 1.75rem;
+      letter-spacing: -0.3px;
+    }
+
+    #gallows-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+
+    #gallows line, #gallows circle {
+      stroke: currentColor;
+    }
+
+    #errors-label {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 1.5rem;
+    }
+
+    #word-display {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      min-height: 48px;
+    }
+
+    .letter-blank {
+      width: 30px;
+      height: 40px;
+      border-bottom: 2px solid #1a1a18;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    #guessed-wrap {
+      text-align: center;
+      margin-bottom: 1.25rem;
+      min-height: 22px;
+      font-size: 13px;
+    }
+
+    #guessed-label { color: #888; margin-right: 4px; }
+
+    .guessed-letters {
+      color: #d9503a;
+      font-weight: 600;
+      letter-spacing: 3px;
+    }
+
+    #input-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    input[type="text"] {
+      width: 56px;
+      height: 44px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 500;
+      text-transform: uppercase;
+      border: 1px solid rgba(0,0,0,0.2);
+      border-radius: 8px;
+      background: #fafaf8;
+      color: #1a1a18;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: rgba(0,0,0,0.4);
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+    }
+
+    input[type="text"]:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    button {
+      padding: 0 20px;
+      height: 44px;
+      font-size: 15px;
+      border-radius: 8px;
+      background: #f0ede6;
+      border: 1px solid rgba(0,0,0,0.15);
+      color: #1a1a18;
+      cursor: pointer;
+      transition: background 0.12s;
+      font-family: inherit;
+    }
+
+    button:hover { background: #e4e0d8; }
+    button:active { transform: scale(0.98); }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    #status-msg {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 500;
+      min-height: 28px;
+      margin-bottom: 1rem;
+    }
+
+    .status-win   { color: #2e8a57; }
+    .status-lose  { color: #d9503a; }
+    .status-correct { color: #2e8a57; }
+    .status-wrong { color: #d9503a; }
+    .status-neutral { color: #888; }
+
+    #new-game-btn {
+      display: block;
+      margin: 0 auto;
+      padding: 8px 32px;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" style="position:absolute; top:16px; left:16px; font-size:14px; color:#888;">Go Back</a>
+  <div class="card">
+    <h1>Hangman</h1>
+
+    <div id="gallows-wrap">
+      <svg id="gallows" width="200" height="220" viewBox="0 0 200 220" aria-hidden="true">
+        <!-- Gallows structure -->
+        <line x1="20" y1="210" x2="180" y2="210" stroke-width="3" stroke-linecap="round"/>
+        <line x1="60" y1="210" x2="60" y2="20"  stroke-width="3" stroke-linecap="round"/>
+        <line x1="60" y1="20"  x2="130" y2="20"  stroke-width="3" stroke-linecap="round"/>
+        <line x1="130" y1="20" x2="130" y2="45"  stroke-width="2" stroke-linecap="round"/>
+        <!-- Body parts (hidden initially) -->
+        <circle id="hg-head" cx="130" cy="60" r="15" stroke-width="2.5" fill="none"  style="display:none"/>
+        <line   id="hg-body" x1="130" y1="75"  x2="130" y2="140" stroke-width="2.5" stroke-linecap="round" style="display:none"/>
+        <line   id="hg-larm" x1="130" y1="90"  x2="105" y2="120" stroke-width="2.5" stroke-linecap="round" style="display:none"/>
+        <line   id="hg-rarm" x1="130" y1="90"  x2="155" y2="120" stroke-width="2.5" stroke-linecap="round" style="display:none"/>
+        <line   id="hg-lleg" x1="130" y1="140" x2="105" y2="175" stroke-width="2.5" stroke-linecap="round" style="display:none"/>
+        <line   id="hg-rleg" x1="130" y1="140" x2="155" y2="175" stroke-width="2.5" stroke-linecap="round" style="display:none"/>
+      </svg>
+    </div>
+
+    <div id="errors-label">Errors: <span id="errors-count">0</span> / 6</div>
+
+    <div id="word-display"></div>
+
+    <div id="guessed-wrap">
+      <span id="guessed-label">Wrong guesses:</span>
+      <span id="guessed-letters" class="guessed-letters"></span>
+    </div>
+
+    <div id="input-row">
+      <input id="letter-input" type="text" maxlength="1" placeholder="A" autocomplete="off" spellcheck="false" aria-label="Enter a letter"/>
+      <button id="guess-btn" onclick="makeGuess()">Guess</button>
+    </div>
+
+    <div id="status-msg" role="status" aria-live="polite"></div>
+
+    <button id="new-game-btn" onclick="newGame()">New game</button>
+  </div>
+
+  <script>
+    const WORDS = [
+      "apple","bridge","castle","dragon","earth","forest","guitar","harbor",
+      "island","jungle","knight","lantern","mirror","needle","ocean","palace",
+      "quartz","raven","shadow","throne","umbrella","valley","whisper","xenon",
+      "yellow","zipper","anchor","basket","candle","desert","engine","falcon",
+      "garden","hunter","insect","jacket","kettle","ladder","magnet","napkin",
+      "oyster","pillow","quiver","rabbit","saddle","tunnel","vacuum","walnut",
+      "bronze","cherry","donkey","emerge","goblin","honest","impact","jigsaw",
+      "kimono","lemon","mango","noodle","onion","pepper","riddle","silver",
+      "tailor","unison","violet","wizard","zombie","angel","butter","cactus",
+      "dagger","elbow","fudge","gravel","hollow","invest","jelly","koala",
+      "llama","muddy","nymph","orbit","prism","quest","rugby","snail",
+      "trout","udder","venom","weasel","yodel","zither","blaze","clover",
+      "denim","flute","glyph","hinge","igloo","joust","knack","lyric"
+    ];
+
+    const PARTS = ["hg-head","hg-body","hg-larm","hg-rarm","hg-lleg","hg-rleg"];
+
+    let word = "", guessedLetters = [], errors = 0, gameOver = false;
+
+    function newGame() {
+      word = WORDS[Math.floor(Math.random() * WORDS.length)];
+      guessedLetters = [];
+      errors = 0;
+      gameOver = false;
+      PARTS.forEach(id => document.getElementById(id).style.display = "none");
+      setStatus("", "");
+      document.getElementById("letter-input").value = "";
+      document.getElementById("letter-input").disabled = false;
+      document.getElementById("guess-btn").disabled = false;
+      document.getElementById("errors-count").textContent = "0";
+      renderWord();
+      renderGuessed();
+      document.getElementById("letter-input").focus();
+    }
+
+    function renderWord() {
+      const wrap = document.getElementById("word-display");
+      wrap.innerHTML = "";
+      for (const ch of word) {
+        const div = document.createElement("div");
+        div.className = "letter-blank";
+        div.textContent = guessedLetters.includes(ch) ? ch.toUpperCase() : "";
+        wrap.appendChild(div);
+      }
+    }
+
+    function renderGuessed() {
+      const wrongs = guessedLetters.filter(l => !word.includes(l));
+      document.getElementById("guessed-letters").textContent =
+        wrongs.map(l => l.toUpperCase()).join("  ");
+    }
+
+    function setStatus(text, type) {
+      const el = document.getElementById("status-msg");
+      el.textContent = text;
+      el.className = type ? "status-" + type : "";
+    }
+
+    function makeGuess() {
+      if (gameOver) return;
+      const input = document.getElementById("letter-input");
+      const letter = input.value.trim().toLowerCase();
+      input.value = "";
+      input.focus();
+
+      if (!letter || !/^[a-z]$/.test(letter)) {
+        setStatus("Please enter a single letter.", "neutral");
+        return;
+      }
+      if (guessedLetters.includes(letter)) {
+        setStatus("Already guessed that letter!", "neutral");
+        return;
+      }
+
+      guessedLetters.push(letter);
+
+      if (word.includes(letter)) {
+        setStatus("Correct!", "correct");
+      } else {
+        document.getElementById(PARTS[errors]).style.display = "";
+        errors++;
+        document.getElementById("errors-count").textContent = errors;
+        setStatus("Wrong!", "wrong");
+      }
+
+      renderWord();
+      renderGuessed();
+      checkEnd();
+    }
+
+    function checkEnd() {
+      const won = [...word].every(ch => guessedLetters.includes(ch));
+      if (won) {
+        gameOver = true;
+        setStatus('You won! The word was "' + word.toUpperCase() + '"', "win");
+        document.getElementById("letter-input").disabled = true;
+        document.getElementById("guess-btn").disabled = true;
+      } else if (errors >= 6) {
+        gameOver = true;
+        setStatus('Game over! The word was "' + word.toUpperCase() + '"', "lose");
+        document.getElementById("letter-input").disabled = true;
+        document.getElementById("guess-btn").disabled = true;
+      }
+    }
+
+    document.getElementById("letter-input").addEventListener("keydown", e => {
+      if (e.key === "Enter") makeGuess();
+    });
+
+    newGame();
+  </script>
+</body>
+</html>

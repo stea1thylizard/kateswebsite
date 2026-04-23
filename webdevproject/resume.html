@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kate Davis – Resume</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/resume.css"/>
+</head>
+<body>
+    <a href="index.html" style="position:absolute; top:16px; left:16px; font-size:20px; color: #32231f;">Go Back</a>
+  <div class="resume-wrapper">
+    <div class="resume-card">
+
+      <!-- ── SIDEBAR ── -->
+      <aside class="sidebar">
+
+        <!-- Photo -->
+        <div class="photo-wrap">
+          <img src="assets/img/kateprofile.jpeg" alt="Kate Davis" class="profile-photo" />
+          <!-- Replace src with your actual image filename -->
+        </div>
+
+        <!-- Contact -->
+        <section class="side-section">
+          <h2 class="side-heading">Contact</h2>
+          <ul class="contact-list">
+            <li onclick="copyToClipboard('+18018852980', 'Phone number')" class="copyable">
+            <i class="fa-solid fa-phone"></i> +1 (801) 885-2980
+            </li>
+            <li onclick="copyToClipboard('kkatecdavis@gmail.com', 'Email address')" class="copyable">
+            <i class="fa-solid fa-envelope"></i> kkatecdavis@gmail.com
+            </li>
+            <li><i class="fa-solid fa-location-dot"></i> 267 E 500 N Apt 57<br>Provo, UT 84606</li>
+          </ul>
+        </section>
+
+        <!-- Education -->
+        <section class="side-section">
+          <h2 class="side-heading">Education</h2>
+          <div class="edu-block">
+            <span class="edu-badge">2022 – Present</span>
+            <p class="edu-school">Brigham Young University</p>
+            <p class="edu-detail">Junior; Currently Enrolled</p>
+            <p class="edu-detail">Pre-Business</p>
+          </div>
+          <div class="edu-block">
+            <span class="edu-badge">Graduated May 2022</span>
+            <p class="edu-school">Lone Peak High School</p>
+            <p class="edu-detail">High School Diploma</p>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="side-section">
+          <h2 class="side-heading">Skills</h2>
+          <ul class="plain-list">
+            <li>Proficiency in HTML, CSS</li>
+            <li>Proficiency in Social Media Marketing Management<br><span class="subtext">(Facebook, TikTok)</span></li>
+            <li>Proficiency in Adobe Software<br><span class="subtext">(Premiere Pro, Photoshop, Illustrator)</span></li>
+            <li>Proficiency in Excel and Word</li>
+            <li>Management Skills</li>
+            <li>Creativity</li>
+            <li>Interpersonal Skills</li>
+            <li>Outgoing and Cooperative</li>
+            <li>Team Leadership</li>
+            <li>Punctual and Reliable</li>
+            <li>Joyful Employee</li>
+          </ul>
+        </section>
+
+        <!-- Language -->
+        <section class="side-section">
+          <h2 class="side-heading">Language</h2>
+          <ul class="plain-list">
+            <li>English</li>
+            <li>Spanish <span class="subtext">(fluent)</span></li>
+          </ul>
+        </section>
+
+      </aside>
+
+      <!-- ── MAIN CONTENT ── -->
+      <main class="main-content">
+
+        <!-- Name -->
+        <header class="name-header">
+            <h1 class="name">KATE <strong>DAVIS</strong></h1>
+            <div class="name-callout">
+                Feel free to explore my resume! Click around and learn more about me!
+            </div>
+        </header>
+
+        <!-- About Me -->
+        <section class="main-section">
+          <h2 class="main-heading">About Me</h2>
+          <p>As an adventurer at heart and an avid people person, I continually strive to learn and improve in diverse environments. I enjoy working with others and growing alongside them. I love the satisfaction of finishing a well-designed project or developing meaningful relationships with others.</p>
+        </section>
+
+        <!-- Experience -->
+        <section class="main-section">
+          <h2 class="main-heading">Experience</h2>
+
+          <!-- BYU University Relations -->
+          <div class="job-block">
+            <div class="job-header">
+              <div class="job-title-wrap">
+                <a href="https://ur.byu.edu" class="job-org-link" target="_blank" rel="noopener noreferrer"><p class="job-org">BYU University Relations</p></a>
+                <p class="job-role">University Ambassador</p>
+              </div>
+              <span class="job-dates">Jan 2026 – Current</span>
+            </div>
+            <ul class="job-bullets">
+              <li>Guided tours for groups of alumni and special guests visiting campus.</li>
+              <li>Developed new marketing techniques to promote campus involvement within the community.</li>
+            </ul>
+          </div>
+
+          <!-- BYU Financial Services -->
+          <div class="job-block">
+            <div class="job-header">
+              <div class="job-title-wrap">
+                <a href="https://finserve.byu.edu" class="job-org-link" target="_blank" rel="noopener noreferrer"><p class="job-org">BYU Financial Services</p></a>
+                <p class="job-role">Administrative Office Assistant</p>
+              </div>
+              <span class="job-dates">Jan 2025 – Dec 2025</span>
+            </div>
+            <ul class="job-bullets">
+              <li>Delivered fast, accurate weekly payment distribution to students and clients—including everything from checks to critical account paperwork.</li>
+              <li>Streamlined onboarding and offboarding for staff and student employees, fostering smooth transitions for the team.</li>
+              <li>Prepared vehicle sale title documentation and prorated tuition petitions, handling legal and logistical paperwork for official transactions.</li>
+            </ul>
+          </div>
+
+          <!-- Missionary -->
+          <div class="job-block">
+            <div class="job-header">
+              <div class="job-title-wrap">
+                <a href="https://www.churchofjesuschrist.org" class="job-org-link" target="_blank" rel="noopener noreferrer"><p class="job-org">Church of Jesus Christ of Latter-Day Saints</p></a>
+                <p class="job-role">Missionary</p>
+              </div>
+              <span class="job-dates">Jun 2023 – Dec 2024</span>
+            </div>
+            <ul class="job-bullets">
+              <li>Gained experience in interpersonal skills by meeting and working with new people every day.</li>
+              <li>Created content and ran all social media operations for our organization.</li>
+              <li>Consistently trained and directed groups of 50+ representatives.</li>
+            </ul>
+          </div>
+
+          <!-- Crust Club Drive-Thru -->
+          <div class="job-block">
+            <div class="job-header">
+              <div class="job-title-wrap">
+                <a href="https://crustclub.com/" class="job-org-link" target="_blank" rel="noopener noreferrer"><p class="job-org">Crust Club Drive-Thru</p></a>
+                <p class="job-role">Shift Manager</p>
+              </div>
+              <span class="job-dates">Feb 2022 – Aug 2022</span>
+            </div>
+            <ul class="job-bullets">
+              <li>Directed and led employees throughout shifts to maximize productivity and efficiency.</li>
+              <li>Completed thorough opening, closing, and shift change functions to maintain operational standards each day.</li>
+            </ul>
+          </div>
+
+        </section>
+
+      </main>
+    </div><!-- /.resume-card -->
+  </div><!-- /.resume-wrapper -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <div class="copy-toast" id="copyToast"></div>
+
+    <script>
+    function copyToClipboard(text, label) {
+        navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('copyToast');
+        toast.textContent = label + ' copied to clipboard!';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+        });
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,453 @@
+/* ============================================================
+   styles.css — Movie Scores Website
+   From-scratch stylesheet (no Bootstrap)
+   ============================================================ */
+
+/* ---------- CSS Variables (color palette & fonts) ---------- */
+:root {
+  --bg-dark:      #0d0d0d;
+  --bg-section:   #141414;
+  --bg-card:      #1c1c1c;
+  --gold:         #c9a84c;
+  --gold-light:   #e8c97a;
+  --text-primary: #f0ece2;
+  --text-muted:   #888880;
+  --accent:       #8b1a1a;
+
+  --font-display: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  --font-body:    'Georgia', 'Times New Roman', serif;
+  --font-label:   'Courier New', Courier, monospace;
+}
+
+/* ---------- 1. RESET & BASE ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* ---------- 2. TYPOGRAPHY HELPERS ---------- */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: normal;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin-bottom: 0.6rem;
+  color: var(--text-primary);
+}
+
+h3 {
+  font-size: 1.25rem;
+  color: var(--gold-light);
+  margin-bottom: 0.4rem;
+}
+
+p {
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--gold-light);
+  text-decoration: underline;
+}
+
+.gold {
+  color: var(--gold);
+}
+
+/* ---------- 3. SECTION ANCHOR (invisible target offset) ---------- */
+.section-anchor {
+  display: block;
+  position: relative;
+  top: -80px;
+  visibility: hidden;
+}
+
+/* ---------- 4. DIV 1: SITE-WIDE NAV BAR ---------- */
+#site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(8, 8, 8, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+}
+
+#site-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--gold);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ---------- 5. DIV 2: HERO ---------- */
+#hero-div {
+  min-height: 100vh;
+  padding-top: calc(4rem + 40px); /* offset for fixed nav */
+  background-color: #0a0a0a;
+  background-image:
+    linear-gradient(to bottom, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.9) 100%),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(201,168,76,0.04) 40px,
+      rgba(201,168,76,0.04) 41px
+    );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  border-bottom: 2px solid var(--gold);
+}
+
+#hero-text {
+  max-width: 800px;
+}
+
+.hero-label {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-top: 1.2rem;
+  font-style: italic;
+}
+
+/* ---------- ANCHOR NAV (inside hero) ---------- */
+#anchor-nav {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+#anchor-nav a {
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 0.5rem 1.4rem;
+  border-radius: 2px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+#anchor-nav a:hover {
+  background-color: var(--gold);
+  color: #0d0d0d;
+  text-decoration: none;
+}
+
+/* ---------- 5. SHARED SECTION STYLES ---------- */
+.section-intro {
+  color: var(--text-muted);
+  max-width: 680px;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+
+/* ---------- 6. DIV 2: COMPOSERS ---------- */
+#composers-div {
+  background-color: var(--bg-section);
+  padding: 6rem 8%;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+/* Ordered list */
+#composers-list {
+  list-style: none;
+  counter-reset: composer-counter;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-left: 0;
+}
+
+#composers-list > li {
+  counter-increment: composer-counter;
+  position: relative;
+  padding-left: 4rem;
+  padding-top: 0.25rem;
+}
+
+#composers-list > li::before {
+  content: counter(composer-counter, upper-roman);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  border-right: 1px solid var(--gold);
+  padding-right: 1rem;
+  line-height: 1.8rem;
+}
+
+/* Embedded unordered list */
+#composers-list ul {
+  list-style: none;
+  margin-top: 0.6rem;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+#composers-list ul li {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+#composers-list ul li::before {
+  content: '♩';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+/* ---------- 7. DIV 3: FAVORITES (score cards) ---------- */
+#favorites-div {
+  background-color: var(--bg-dark);
+  padding: 6rem 8%;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+#score-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.score-card {
+  background-color: var(--bg-card);
+  border: 1px solid #2a2a2a;
+  border-top: 3px solid var(--gold);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.score-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+.score-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(30%);
+  transition: filter 0.3s ease;
+}
+
+.score-card:hover .score-img {
+  filter: grayscale(0%);
+}
+
+.score-info {
+  padding: 1.4rem;
+}
+
+.composer-tag {
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  margin-top: 0.2rem;
+}
+
+/* ---------- 8. DIV 4: VIDEO ---------- */
+#video-div {
+  background-color: var(--bg-section);
+  padding: 6rem 8%;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+#video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 840px;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  background: #000;
+  border: 2px solid var(--gold);
+}
+
+#yt-embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- 9. DIV 5: TOP SCORES ---------- */
+#top-scores-div {
+  background-color: var(--bg-dark);
+  padding: 6rem 8%;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+#top-scores-list {
+  list-style: none;
+  counter-reset: rank-counter;
+  padding-left: 0;
+  max-width: 600px;
+}
+
+#top-scores-list li {
+  counter-increment: rank-counter;
+  position: relative;
+  padding: 1rem 1rem 1rem 4rem;
+  border-bottom: 1px solid #222;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  transition: background 0.2s ease;
+}
+
+#top-scores-list li:hover {
+  background-color: rgba(201,168,76,0.06);
+}
+
+#top-scores-list li::before {
+  content: '#' counter(rank-counter);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  width: 3rem;
+  text-align: right;
+  padding-right: 0.8rem;
+  border-right: 1px solid var(--accent);
+}
+
+#tableau-div {
+  background-color: var(--bg-section);
+  padding: 6rem 8%;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+#tableau-wrapper {
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  overflow: hidden;
+}
+
+/* ---------- 10. FOOTER ---------- */
+#footer-div {
+  background-color: #080808;
+  border-top: 2px solid var(--gold);
+  text-align: center;
+  padding: 2rem;
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+#footer-div strong {
+  color: var(--gold);
+}
+
+/* ---------- 11. RESPONSIVE ---------- */
+@media (max-width: 640px) {
+  #composers-div,
+  #favorites-div,
+  #video-div,
+  #top-scores-div {
+    padding: 4rem 5%;
+  }
+
+  #composers-list > li {
+    padding-left: 3rem;
+  }
+}

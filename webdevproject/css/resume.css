@@ -1,0 +1,407 @@
+/* =====================================================
+   resume.css  â€“  Kate Davis Resume Page
+   Fonts: Cormorant Garamond (headings) + Jost (body)
+   ===================================================== */
+
+/* â”€â”€ CSS Variables â”€â”€ */
+:root {
+  --sidebar-bg: #f0f4dc;       /* soft sage-green, matching the PDF */
+  --main-bg:    #ffffff;
+  --accent:     #c9a79a;       /* muted rose for badges & accents */
+  --accent-light: #f2ddd8;
+  --text-dark:  #2b2b2b;
+  --text-mid:   #555555;
+  --text-light: #888888;
+  --divider:    #d6d6c8;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Jost', sans-serif;
+}
+
+/* â”€â”€ Reset & Base â”€â”€ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  background: linear-gradient(to right, var(--sidebar-bg) 32%, var(--main-bg) 32%);
+}
+/*body {
+  background-color: #e8e8e0;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  min-height: 100vh;
+  padding: 0
+} /*40px 20px;
+}/*
+
+/* â”€â”€ Outer wrapper â”€â”€ */
+.resume-wrapper {
+  max-width: 980px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* â”€â”€ Resume Card (two-column layout) â”€â”€ */
+.resume-card {
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.13);
+}
+
+/* =====================
+   SIDEBAR
+   ===================== */
+.sidebar {
+  width: 310px;
+  flex-shrink: 0;
+  background-color: var(--sidebar-bg);
+  padding: 40px 28px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Photo */
+.photo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  /* Placeholder style when no image is loaded */
+  background-color: #d6d9c4;
+}
+
+/* Sidebar section heading */
+.side-heading {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: 0.03em;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--divider);
+}
+
+/* Contact list */
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-list li {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.contact-list li i {
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Education */
+.edu-block {
+  margin-bottom: 14px;
+}
+
+.edu-badge {
+  display: inline-block;
+  background-color: var(--accent-light);
+  color: var(--text-mid);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 5px;
+}
+
+.edu-school {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+}
+
+.edu-detail {
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  line-height: 1.4;
+}
+
+/* Skills & Language plain list */
+.plain-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.plain-list li {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  line-height: 1.4;
+}
+
+.subtext {
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
+
+/* =====================
+   MAIN CONTENT
+   ===================== */
+.main-content {
+  flex: 1;
+  background-color: var(--main-bg);
+  padding: 44px 48px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Name header */
+.name-header {
+  border-bottom: none;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+.name strong {
+  font-weight: 700;
+}
+
+/* Main section */
+.main-section p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+}
+
+/* Main section heading */
+.main-heading {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--divider);
+}
+
+/* Job blocks */
+.job-block {
+  margin-bottom: 24px;
+}
+
+.job-block:last-child {
+  margin-bottom: 0;
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.job-title-wrap {
+  flex: 1;
+}
+
+.job-org {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  margin-bottom: 1px;
+}
+
+.job-role {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  font-style: italic;
+}
+
+.job-dates {
+  font-size: 0.8rem;
+  color: var(--text-mid);
+  white-space: nowrap;
+  font-weight: 500;
+  text-align: right;
+  padding-top: 2px;
+}
+
+.job-bullets {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.job-bullets li {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+/* Achievements list */
+.achievements-list {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.achievements-list li {
+  font-size: 0.875rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+@media (max-width: 768px) {
+  .resume-card {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 32px 24px;
+  }
+
+  .main-content {
+    padding: 32px 24px;
+  }
+
+  .name {
+    font-size: 2.2rem;
+  }
+
+  .job-header {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .job-dates {
+    text-align: left;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  .resume-card {
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+
+.job-org-link {
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-left: -6px;
+  transition: background-color 0.2s ease;
+}
+
+.job-org-link:hover {
+  background-color: var(--accent-light);
+}
+
+.job-org-link .job-org {
+  color: var(--text-dark);
+}
+
+.job-org-link:hover .job-org {
+  color: var(--text-dark);
+}
+
+.name-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.name-callout {
+  background-color: var(--accent-light);
+  border-radius: 16px;
+  padding: 12px 18px;
+  font-size: 0.82rem;
+  color: var(--text-mid);
+  max-width: 200px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+
+.copyable {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: 6px;
+  padding: 3px 6px;
+  margin-left: -6px;
+}
+
+.copyable:hover {
+  background-color: var(--accent-light);
+}
+
+.copy-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--text-dark);
+  color: white;
+  padding: 10px 22px;
+  border-radius: 24px;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.copy-toast.show {
+  opacity: 1;
+}
